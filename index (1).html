@@ -977,206 +977,120 @@
       /* FAQ Section */
       .faq {
         display: grid;
-        grid-template-columns: 1fr 1.25fr;
-        gap: 5vw;
+        grid-template-columns: 0.85fr 1.4fr;
+        gap: 6vw;
         align-items: start;
       }
 
-      .faq-intro {
+      .faq-left {
         position: sticky;
-        top: 14vh;
+        top: 18vh;
       }
 
-      .faq-sub {
-        color: var(--smoke);
-        font-size: 15px;
-        line-height: 1.6;
-        margin: 18px 0 28px;
-        max-width: 440px;
-      }
-
-      .faq-badges {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 28px;
-      }
-
-      .faq-badge {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 12px 18px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--line);
-        border-radius: 4px;
-      }
-
-      .fb-icon {
-        color: var(--rose);
-        font-size: 14px;
-      }
-
-      .faq-badge strong {
-        display: block;
-        font: 500 13px var(--m);
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        color: var(--ice);
-      }
-
-      .faq-badge small {
-        display: block;
-        color: var(--smoke);
-        font-size: 12px;
-        margin-top: 2px;
-      }
-
-      .faq-cta-card {
-        padding: 22px;
-        background: radial-gradient(circle at 50% 0%, rgba(214, 235, 255, 0.08), rgba(16, 16, 22, 0.9) 70%);
-        border: 1px solid rgba(214, 235, 255, 0.16);
-        border-radius: 6px;
-        max-width: 440px;
-      }
-
-      .faq-cta-card h4 {
-        font: 400 18px var(--d);
-        text-transform: uppercase;
-        color: var(--ice);
-        margin-bottom: 6px;
-      }
-
-      .faq-cta-card p {
-        color: var(--smoke);
-        font-size: 13px;
-        margin-bottom: 16px;
-        line-height: 1.5;
-      }
-
-      .btn-sm {
-        padding: 10px 20px;
-        font-size: 11px;
-      }
-
-      /* FAQ Accordion Items */
       .faq-list {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        border-top: 1px solid var(--line);
       }
 
-      .faq-item {
-        background: rgba(16, 16, 22, 0.4);
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        padding: 0;
-        transition: border-color .35s, background .35s, box-shadow .35s;
-        overflow: hidden;
+      .faq-row {
+        border-bottom: 1px solid var(--line);
+        transition: background .3s;
       }
 
-      .faq-item:hover {
-        border-color: rgba(214, 235, 255, 0.35);
-        background: rgba(18, 20, 28, 0.65);
-      }
-
-      .faq-item[open] {
-        border-color: rgba(232, 178, 150, 0.45);
-        background: radial-gradient(circle at 100% 0%, rgba(232, 178, 150, 0.08), rgba(16, 16, 22, 0.8) 60%);
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-      }
-
-      .faq-item summary {
+      .faq-row summary {
         cursor: pointer;
         list-style: none;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 44px 1fr 32px;
         align-items: center;
-        gap: 20px;
-        padding: 22px 24px;
-        position: relative;
+        gap: 16px;
+        padding: 26px 0;
         user-select: none;
+        transition: padding .3s cubic-bezier(.2, .8, .2, 1);
       }
 
-      .faq-item summary::-webkit-details-marker {
+      .faq-row summary::-webkit-details-marker {
         display: none;
       }
 
-      .faq-q-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+      .faq-row:hover summary {
+        padding-left: 8px;
       }
 
-      .faq-idx {
-        font: 500 11px var(--m);
-        letter-spacing: .16em;
-        color: var(--rose);
-        text-transform: uppercase;
+      .faq-num {
+        font: 400 20px / 1 var(--d);
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(214, 235, 255, .4);
+        transition: -webkit-text-stroke-color .3s;
       }
 
-      .faq-title {
-        font: 500 18px / 1.35 var(--m);
+      .faq-row:hover .faq-num,
+      .faq-row[open] .faq-num {
+        -webkit-text-stroke-color: var(--rose);
+      }
+
+      .faq-q {
+        font: 500 clamp(17px, 1.6vw, 22px) / 1.35 var(--m);
         color: var(--ice);
         transition: color .3s;
       }
 
-      .faq-item:hover .faq-title {
+      .faq-row:hover .faq-q,
+      .faq-row[open] .faq-q {
         color: #fff;
       }
 
-      .faq-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: 1px solid var(--line);
+      .faq-cross {
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
         position: relative;
-        transition: transform .4s cubic-bezier(.2, .8, .2, 1), border-color .4s, background .4s;
+        justify-self: end;
       }
 
-      .faq-icon:before,
-      .faq-icon:after {
+      .faq-cross:before,
+      .faq-cross:after {
         content: "";
         position: absolute;
         background: var(--ice);
-        transition: transform .4s, background .4s;
+        transition: transform .35s cubic-bezier(.2, .8, .2, 1), background .35s;
       }
 
-      .faq-icon:before {
-        width: 12px;
-        height: 2px;
+      .faq-cross:before {
+        width: 14px;
+        height: 1.5px;
       }
 
-      .faq-icon:after {
-        width: 2px;
-        height: 12px;
+      .faq-cross:after {
+        width: 1.5px;
+        height: 14px;
       }
 
-      .faq-item[open] .faq-icon {
-        transform: rotate(45deg);
-        border-color: var(--rose);
-        background: rgba(232, 178, 150, 0.15);
-      }
-
-      .faq-item[open] .faq-icon:before,
-      .faq-item[open] .faq-icon:after {
+      .faq-row:hover .faq-cross:before,
+      .faq-row:hover .faq-cross:after {
         background: var(--rose);
       }
 
-      .faq-content {
-        padding: 0 24px 24px;
-        border-top: 1px solid rgba(214, 235, 255, 0.08);
+      .faq-row[open] .faq-cross {
+        transform: rotate(45deg);
       }
 
-      .faq-content p {
+      .faq-row[open] .faq-cross:before,
+      .faq-row[open] .faq-cross:after {
+        background: var(--rose);
+      }
+
+      .faq-ans {
+        padding: 0 44px 26px 60px;
+      }
+
+      .faq-ans p {
         color: var(--smoke);
-        font: 400 14px / 1.7 var(--m);
-        margin-top: 16px;
-        max-width: 620px;
+        font: 400 15px / 1.65 var(--m);
+        max-width: 640px;
       }
 
       /* ==========================================================================
@@ -1581,9 +1495,19 @@
           grid-template-columns: 1fr;
         }
 
-        .st, .faq-intro {
+        .st, .faq-left {
           position: static;
           margin-bottom: 6vh;
+        }
+
+        .faq-row summary {
+          grid-template-columns: 36px 1fr 28px;
+          gap: 12px;
+          padding: 20px 0;
+        }
+
+        .faq-ans {
+          padding: 0 0 20px 48px;
         }
 
         #k {
@@ -2050,104 +1974,63 @@
     <!-- FAQ Section -->
     <section class="sec" id="q" style="border-top: 1px solid var(--line);">
       <div class="faq">
-        <div class="faq-intro rv">
+        <div class="faq-left rv">
           <h2>Ask <span class="o">away.</span></h2>
-          <p class="faq-sub">Direct access to the Jaipur diamond atelier. Zero middlemen, genuine craftsmanship, and institutional confidentiality.</p>
-
-          <div class="faq-badges">
-            <div class="faq-badge">
-              <span class="fb-icon">✦</span>
-              <div>
-                <strong>Factory Direct</strong>
-                <small>Jaipur Gem City to your hands</small>
-              </div>
-            </div>
-            <div class="faq-badge">
-              <span class="fb-icon">✦</span>
-              <div>
-                <strong>Mutual NDA Protection</strong>
-                <small>Guaranteed design secrecy</small>
-              </div>
-            </div>
-            <div class="faq-badge">
-              <span class="fb-icon">✦</span>
-              <div>
-                <strong>Express Worldwide</strong>
-                <small>Insured global priority courier</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-cta-card">
-            <h4>Have a custom concept?</h4>
-            <p>Share sketches, dimensions, or 3D ideas with our master CAD team.</p>
-            <button type="button" class="btn btn-sm open-modal-btn">Start a Commission</button>
-          </div>
         </div>
 
         <div class="faq-list rv">
-          <details class="faq-item" open>
+          <details class="faq-row" open>
             <summary>
-              <div class="faq-q-wrap">
-                <span class="faq-idx">01 // BESPOKE CAD</span>
-                <span class="faq-title">Can you make a piece from my sketch or reference?</span>
-              </div>
-              <span class="faq-icon" aria-hidden="true"></span>
+              <span class="faq-num">01</span>
+              <span class="faq-q">Can you make a piece from my sketch?</span>
+              <i class="faq-cross"></i>
             </summary>
-            <div class="faq-content">
-              <p>Yes. Send a napkin sketch, vector logo, Instagram screenshot, or photo with your desired dimensions and stone styling. Our CAD team models a precision 3D render with exact prong counts and stone layouts for your approval before casting.</p>
+            <div class="faq-ans">
+              <p>Yes. Send a sketch, logo or photo with your size and stone style, and we return CAD for approval.</p>
             </div>
           </details>
 
-          <details class="faq-item">
+          <details class="faq-row">
             <summary>
-              <div class="faq-q-wrap">
-                <span class="faq-idx">02 // TURNAROUND</span>
-                <span class="faq-title">How long does a custom piece take from sketch to door?</span>
-              </div>
-              <span class="faq-icon" aria-hidden="true"></span>
+              <span class="faq-num">02</span>
+              <span class="faq-q">How long does a custom piece take?</span>
+              <i class="faq-cross"></i>
             </summary>
-            <div class="faq-content">
-              <p>Initial 3D CAD renders are typically delivered within 24 to 48 hours. Once approved, casting, stone sorting, micro-prong hand-setting, and rhodium polishing take 10 to 18 business days depending on stone density and complexity.</p>
+            <div class="faq-ans">
+              <p>It depends on complexity and revisions. We confirm a timeline after reviewing your brief.</p>
             </div>
           </details>
 
-          <details class="faq-item">
+          <details class="faq-row">
             <summary>
-              <div class="faq-q-wrap">
-                <span class="faq-idx">03 // WORLDWIDE SHIPPING</span>
-                <span class="faq-title">Do you ship worldwide, and is it insured?</span>
-              </div>
-              <span class="faq-icon" aria-hidden="true"></span>
+              <span class="faq-num">03</span>
+              <span class="faq-q">Do you ship worldwide?</span>
+              <i class="faq-cross"></i>
             </summary>
-            <div class="faq-content">
-              <p>Yes. Crafted in our Jaipur workshop, every finished piece is double-inspected and shipped worldwide via insured priority air courier (DHL Express / FedEx Priority) with direct signature confirmation and tracking.</p>
+            <div class="faq-ans">
+              <p>Yes. Made in Jaipur, shipped to clients around the world.</p>
             </div>
           </details>
 
-          <details class="faq-item">
+          <details class="faq-row">
             <summary>
-              <div class="faq-q-wrap">
-                <span class="faq-idx">04 // CONFIDENTIALITY</span>
-                <span class="faq-title">Is my design kept private before my drop or release?</span>
-              </div>
-              <span class="faq-icon" aria-hidden="true"></span>
+              <span class="faq-num">04</span>
+              <span class="faq-q">Is my design kept private?</span>
+              <i class="faq-cross"></i>
             </summary>
-            <div class="faq-content">
-              <p>100% confidential. Unreleased custom designs, artist jewellery, and capsule drops can be protected under a bilateral Non-Disclosure Agreement (NDA) before any files or CAD sketches are exchanged.</p>
+            <div class="faq-ans">
+              <p>Unreleased designs can be covered by an NDA before we start.</p>
             </div>
           </details>
 
-          <details class="faq-item">
+          <details class="faq-row">
             <summary>
-              <div class="faq-q-wrap">
-                <span class="faq-idx">05 // BULK &amp; PRIVATE LABEL</span>
-                <span class="faq-title">Do you handle private label or bulk orders for brands?</span>
-              </div>
-              <span class="faq-icon" aria-hidden="true"></span>
+              <span class="faq-num">05</span>
+              <span class="faq-q">Do you do bulk or private label?</span>
+              <i class="faq-cross"></i>
             </summary>
-            <div class="faq-content">
-              <p>Yes. We manufacture full merch drops, brand accessories, and private-label collections for record labels, streetwear brands, and creators. Share your projected volumes and timeline for tiered factory-direct rates.</p>
+            <div class="faq-ans">
+              <p>Yes. Share your volume and timeline and we’ll quote it.</p>
             </div>
           </details>
         </div>
