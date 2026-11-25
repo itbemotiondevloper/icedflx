@@ -974,46 +974,483 @@
         font-size: 13px;
       }
 
+      /* FAQ Section */
       .faq {
         display: grid;
-        grid-template-columns: 1fr 1.3fr;
-        gap: 6vw;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 5vw;
         align-items: start;
       }
 
-      details {
-        border-bottom: 1px solid var(--line);
-        padding: 22px 0;
+      .faq-intro {
+        position: sticky;
+        top: 14vh;
       }
 
-      summary {
+      .faq-sub {
+        color: var(--smoke);
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 18px 0 28px;
+        max-width: 440px;
+      }
+
+      .faq-badges {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .faq-badge {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 18px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+      }
+
+      .fb-icon {
+        color: var(--rose);
+        font-size: 14px;
+      }
+
+      .faq-badge strong {
+        display: block;
+        font: 500 13px var(--m);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--ice);
+      }
+
+      .faq-badge small {
+        display: block;
+        color: var(--smoke);
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      .faq-cta-card {
+        padding: 22px;
+        background: radial-gradient(circle at 50% 0%, rgba(214, 235, 255, 0.08), rgba(16, 16, 22, 0.9) 70%);
+        border: 1px solid rgba(214, 235, 255, 0.16);
+        border-radius: 6px;
+        max-width: 440px;
+      }
+
+      .faq-cta-card h4 {
+        font: 400 18px var(--d);
+        text-transform: uppercase;
+        color: var(--ice);
+        margin-bottom: 6px;
+      }
+
+      .faq-cta-card p {
+        color: var(--smoke);
+        font-size: 13px;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+
+      .btn-sm {
+        padding: 10px 20px;
+        font-size: 11px;
+      }
+
+      /* FAQ Accordion Items */
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .faq-item {
+        background: rgba(16, 16, 22, 0.4);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 0;
+        transition: border-color .35s, background .35s, box-shadow .35s;
+        overflow: hidden;
+      }
+
+      .faq-item:hover {
+        border-color: rgba(214, 235, 255, 0.35);
+        background: rgba(18, 20, 28, 0.65);
+      }
+
+      .faq-item[open] {
+        border-color: rgba(232, 178, 150, 0.45);
+        background: radial-gradient(circle at 100% 0%, rgba(232, 178, 150, 0.08), rgba(16, 16, 22, 0.8) 60%);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+      }
+
+      .faq-item summary {
         cursor: pointer;
         list-style: none;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 20px;
-        font: 500 19px var(--m);
+        padding: 22px 24px;
+        position: relative;
+        user-select: none;
       }
 
-      summary::-webkit-details-marker {
+      .faq-item summary::-webkit-details-marker {
         display: none;
       }
 
-      summary:after {
-        content: "+";
+      .faq-q-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .faq-idx {
+        font: 500 11px var(--m);
+        letter-spacing: .16em;
         color: var(--rose);
-        font-size: 22px;
-        transition: transform .4s;
+        text-transform: uppercase;
       }
 
-      details[open] summary:after {
+      .faq-title {
+        font: 500 18px / 1.35 var(--m);
+        color: var(--ice);
+        transition: color .3s;
+      }
+
+      .faq-item:hover .faq-title {
+        color: #fff;
+      }
+
+      .faq-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        transition: transform .4s cubic-bezier(.2, .8, .2, 1), border-color .4s, background .4s;
+      }
+
+      .faq-icon:before,
+      .faq-icon:after {
+        content: "";
+        position: absolute;
+        background: var(--ice);
+        transition: transform .4s, background .4s;
+      }
+
+      .faq-icon:before {
+        width: 12px;
+        height: 2px;
+      }
+
+      .faq-icon:after {
+        width: 2px;
+        height: 12px;
+      }
+
+      .faq-item[open] .faq-icon {
         transform: rotate(45deg);
+        border-color: var(--rose);
+        background: rgba(232, 178, 150, 0.15);
       }
 
-      details p {
+      .faq-item[open] .faq-icon:before,
+      .faq-item[open] .faq-icon:after {
+        background: var(--rose);
+      }
+
+      .faq-content {
+        padding: 0 24px 24px;
+        border-top: 1px solid rgba(214, 235, 255, 0.08);
+      }
+
+      .faq-content p {
         color: var(--smoke);
-        margin-top: 12px;
-        max-width: 600px;
+        font: 400 14px / 1.7 var(--m);
+        margin-top: 16px;
+        max-width: 620px;
+      }
+
+      /* ==========================================================================
+         Bespoke Commission / Enquiry Modal
+         ========================================================================== */
+      .modal {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: var(--ice);
+        max-width: 620px;
+        width: min(92vw, 620px);
+        margin: auto;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        overflow: visible;
+      }
+
+      .modal::backdrop {
+        background: rgba(5, 5, 8, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        animation: modalFadeIn .3s ease;
+      }
+
+      .modal-box {
+        background: linear-gradient(165deg, #131620 0%, #08090d 100%);
+        border: 1px solid rgba(214, 235, 255, 0.22);
+        box-shadow: 0 30px 80px -10px rgba(0, 0, 0, 0.9), 0 0 50px rgba(159, 216, 255, 0.12);
+        border-radius: 8px;
+        padding: clamp(24px, 4vw, 38px);
+        position: relative;
+        max-height: 90vh;
+        max-height: 90svh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        animation: modalSlideUp .4s cubic-bezier(.2, .8, .2, 1);
+      }
+
+      @keyframes modalFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes modalSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--ice);
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        z-index: 5;
+      }
+
+      .modal-close:hover {
+        border-color: var(--rose);
+        color: var(--rose);
+        transform: rotate(90deg);
+      }
+
+      .modal-tag {
+        font: 600 11px var(--m);
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 8px;
+      }
+
+      .modal-title {
+        font: 400 clamp(28px, 3.5vw, 42px) / 1 var(--d);
+        text-transform: uppercase;
+        letter-spacing: .01em;
+        margin-bottom: 10px;
+      }
+
+      .modal-desc {
+        color: var(--smoke);
+        font: 400 13px / 1.55 var(--m);
+        margin-bottom: 24px;
+      }
+
+      .modal-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-group label {
+        font: 500 11px var(--m);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--ice);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        background: rgba(7, 7, 10, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 12px 14px;
+        font: 400 14px var(--m);
+        color: #fff;
+        outline: none;
+        transition: border-color .3s, box-shadow .3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--ice);
+        box-shadow: 0 0 16px rgba(214, 235, 255, 0.2);
+      }
+
+      .form-group select option {
+        background: #0e1017;
+        color: #fff;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 70px;
+      }
+
+      .form-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .chip input {
+        display: none;
+      }
+
+      .chip span {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 3px;
+        font: 500 11px var(--m);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--smoke);
+        transition: all .25s;
+      }
+
+      .chip input:checked + span {
+        border-color: var(--rose);
+        color: #fff;
+        background: rgba(232, 178, 150, 0.15);
+        box-shadow: 0 0 14px rgba(232, 178, 150, 0.2);
+      }
+
+      .form-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        margin: 4px 0 8px;
+        user-select: none;
+      }
+
+      .form-check input {
+        accent-color: var(--rose);
+        margin-top: 3px;
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+      }
+
+      .form-check span {
+        font-size: 12px;
+        color: var(--smoke);
+        line-height: 1.45;
+      }
+
+      .btn-submit {
+        width: 100%;
+        text-align: center;
+        padding: 16px;
+        margin-top: 4px;
+        background: transparent;
+      }
+
+      /* Modal Success View */
+      .modal-success {
+        text-align: center;
+        padding: 30px 10px 10px;
+      }
+
+      .success-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 16px;
+        border-radius: 50%;
+        border: 2px solid var(--rose);
+        background: rgba(232, 178, 150, 0.12);
+        color: var(--rose);
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 30px rgba(232, 178, 150, 0.3);
+      }
+
+      .modal-success h3 {
+        font: 400 32px var(--d);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .modal-success p {
+        color: var(--smoke);
+        font: 400 14px / 1.6 var(--m);
+        max-width: 440px;
+        margin: 0 auto 24px;
+      }
+
+      .success-tags {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+
+      .success-tags span {
+        font: 500 11px var(--m);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        color: var(--ice);
       }
 
       /* end */
@@ -1144,7 +1581,7 @@
           grid-template-columns: 1fr;
         }
 
-        .st {
+        .st, .faq-intro {
           position: static;
           margin-bottom: 6vh;
         }
@@ -1613,27 +2050,105 @@
     <!-- FAQ Section -->
     <section class="sec" id="q" style="border-top: 1px solid var(--line);">
       <div class="faq">
-        <h2 class="rv">Ask <span class="o">away.</span></h2>
-        <div class="rv">
-          <details open>
-            <summary>Can you make a piece from my sketch?</summary>
-            <p>Yes. Send a sketch, logo or photo with your size and stone style, and we return CAD for approval.</p>
+        <div class="faq-intro rv">
+          <h2>Ask <span class="o">away.</span></h2>
+          <p class="faq-sub">Direct access to the Jaipur diamond atelier. Zero middlemen, genuine craftsmanship, and institutional confidentiality.</p>
+
+          <div class="faq-badges">
+            <div class="faq-badge">
+              <span class="fb-icon">✦</span>
+              <div>
+                <strong>Factory Direct</strong>
+                <small>Jaipur Gem City to your hands</small>
+              </div>
+            </div>
+            <div class="faq-badge">
+              <span class="fb-icon">✦</span>
+              <div>
+                <strong>Mutual NDA Protection</strong>
+                <small>Guaranteed design secrecy</small>
+              </div>
+            </div>
+            <div class="faq-badge">
+              <span class="fb-icon">✦</span>
+              <div>
+                <strong>Express Worldwide</strong>
+                <small>Insured global priority courier</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-cta-card">
+            <h4>Have a custom concept?</h4>
+            <p>Share sketches, dimensions, or 3D ideas with our master CAD team.</p>
+            <button type="button" class="btn btn-sm open-modal-btn">Start a Commission</button>
+          </div>
+        </div>
+
+        <div class="faq-list rv">
+          <details class="faq-item" open>
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-idx">01 // BESPOKE CAD</span>
+                <span class="faq-title">Can you make a piece from my sketch or reference?</span>
+              </div>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-content">
+              <p>Yes. Send a napkin sketch, vector logo, Instagram screenshot, or photo with your desired dimensions and stone styling. Our CAD team models a precision 3D render with exact prong counts and stone layouts for your approval before casting.</p>
+            </div>
           </details>
-          <details>
-            <summary>How long does a custom piece take?</summary>
-            <p>It depends on complexity and revisions. We confirm a timeline after reviewing your brief.</p>
+
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-idx">02 // TURNAROUND</span>
+                <span class="faq-title">How long does a custom piece take from sketch to door?</span>
+              </div>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-content">
+              <p>Initial 3D CAD renders are typically delivered within 24 to 48 hours. Once approved, casting, stone sorting, micro-prong hand-setting, and rhodium polishing take 10 to 18 business days depending on stone density and complexity.</p>
+            </div>
           </details>
-          <details>
-            <summary>Do you ship worldwide?</summary>
-            <p>Yes. Made in Jaipur, shipped to clients around the world.</p>
+
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-idx">03 // WORLDWIDE SHIPPING</span>
+                <span class="faq-title">Do you ship worldwide, and is it insured?</span>
+              </div>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-content">
+              <p>Yes. Crafted in our Jaipur workshop, every finished piece is double-inspected and shipped worldwide via insured priority air courier (DHL Express / FedEx Priority) with direct signature confirmation and tracking.</p>
+            </div>
           </details>
-          <details>
-            <summary>Is my design kept private?</summary>
-            <p>Unreleased designs can be covered by an NDA before we start.</p>
+
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-idx">04 // CONFIDENTIALITY</span>
+                <span class="faq-title">Is my design kept private before my drop or release?</span>
+              </div>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-content">
+              <p>100% confidential. Unreleased custom designs, artist jewellery, and capsule drops can be protected under a bilateral Non-Disclosure Agreement (NDA) before any files or CAD sketches are exchanged.</p>
+            </div>
           </details>
-          <details>
-            <summary>Do you do bulk or private label?</summary>
-            <p>Yes. Share your volume and timeline and we’ll quote it.</p>
+
+          <details class="faq-item">
+            <summary>
+              <div class="faq-q-wrap">
+                <span class="faq-idx">05 // BULK &amp; PRIVATE LABEL</span>
+                <span class="faq-title">Do you handle private label or bulk orders for brands?</span>
+              </div>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-content">
+              <p>Yes. We manufacture full merch drops, brand accessories, and private-label collections for record labels, streetwear brands, and creators. Share your projected volumes and timeline for tiered factory-direct rates.</p>
+            </div>
           </details>
         </div>
       </div>
@@ -1653,6 +2168,89 @@
       </div>
       <a class="btn" href="mailto:hello@example.com">Start a piece</a>
     </section>
+
+    <!-- Bespoke Commission / Enquiry Modal Dialog -->
+    <dialog id="enquiry-modal" class="modal" aria-labelledby="modal-title">
+      <div class="modal-box">
+        <button type="button" class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+
+        <div id="modal-form-view">
+          <div class="modal-tag">// BESPOKE COMMISSIONS · JAIPUR ATELIER</div>
+          <h2 id="modal-title" class="modal-title">Start a <span class="o">piece.</span></h2>
+          <p class="modal-desc">Send us your sketch, logo or reference. We confirm stone choices and deliver custom 3D CAD renders for approval before metal is cast.</p>
+
+          <form id="enquiry-form" class="modal-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="client-name">Your Name *</label>
+                <input type="text" id="client-name" name="name" placeholder="e.g. Travis S." required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label for="client-contact">Email / WhatsApp *</label>
+                <input type="text" id="client-contact" name="contact" placeholder="contact@domain.com or +1..." required autocomplete="email">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Piece Type</label>
+              <div class="form-chips">
+                <label class="chip"><input type="radio" name="piece_type" value="Pendant / Cross" checked><span>Pendant</span></label>
+                <label class="chip"><input type="radio" name="piece_type" value="Cuban / Chain"><span>Cuban Chain</span></label>
+                <label class="chip"><input type="radio" name="piece_type" value="Baguette Watch"><span>Watch</span></label>
+                <label class="chip"><input type="radio" name="piece_type" value="Iced Ring"><span>Ring</span></label>
+                <label class="chip"><input type="radio" name="piece_type" value="Full Grillz"><span>Grillz</span></label>
+                <label class="chip"><input type="radio" name="piece_type" value="Custom Bespoke"><span>Other</span></label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="stone-pref">Metal &amp; Stone</label>
+                <select id="stone-pref" name="stone">
+                  <option value="VVS Moissanite / 925 Silver">VVS Moissanite · 925 Silver</option>
+                  <option value="VVS Moissanite / 10K Gold">VVS Moissanite · 10K Gold</option>
+                  <option value="VVS Moissanite / 14K Gold">VVS Moissanite · 14K Gold</option>
+                  <option value="Lab Diamond / 14K Gold" selected>Lab Diamond (VVS/D-F) · 14K Gold</option>
+                  <option value="Lab Diamond / 925 Silver">Lab Diamond · 925 Silver</option>
+                  <option value="Custom Mixed / Unsure">Custom Mixed / Recommend to me</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="budget-timeline">Budget / Deadline</label>
+                <input type="text" id="budget-timeline" name="budget" placeholder="e.g. $2.5K / Needed in 3 weeks">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="piece-notes">Design Notes &amp; Specs</label>
+              <textarea id="piece-notes" name="notes" rows="3" placeholder="Tell us about the piece: size in mm/inches, custom logos, fonts, stone layout, or link to reference image..."></textarea>
+            </div>
+
+            <label class="form-check">
+              <input type="checkbox" name="nda" checked>
+              <span>Keep this commission confidential under NDA (unreleased / private drop)</span>
+            </label>
+
+            <button type="submit" class="btn btn-submit">
+              <span>Submit Brief &amp; Request CAD</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Success Message View -->
+        <div id="modal-success-view" class="modal-success" style="display: none;">
+          <div class="success-icon">✦</div>
+          <h3>Brief <span class="o">Locked In.</span></h3>
+          <p>Your commission brief has been routed directly to our Jaipur CAD atelier. A master setter will review your specifications and follow up within 24 hours.</p>
+          <div class="success-tags">
+            <span>NDA Protected</span>
+            <span>CAD Lead Time ~24h</span>
+            <span>Worldwide Shipping</span>
+          </div>
+          <button type="button" class="btn" id="modal-done-btn">Back to Lookbook</button>
+        </div>
+      </div>
+    </dialog>
 
     <!-- Footer -->
     <footer>
@@ -1816,6 +2414,72 @@
       addEventListener('scroll', onScroll, { passive: true });
       addEventListener('resize', onScroll);
       onScroll();
+      // ==========================================================================
+      // Enquiry & Bespoke Commission Modal Handler
+      // ==========================================================================
+      const modal = $('#enquiry-modal');
+      const modalClose = $('#modal-close');
+      const modalDone = $('#modal-done-btn');
+      const enquiryForm = $('#enquiry-form');
+      const formView = $('#modal-form-view');
+      const successView = $('#modal-success-view');
+
+      function openEnquiryModal(e) {
+        if (e) e.preventDefault();
+        if (!modal) return;
+        if (formView && successView) {
+          formView.style.display = 'block';
+          successView.style.display = 'none';
+        }
+        modal.showModal();
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeEnquiryModal() {
+        if (!modal) return;
+        modal.close();
+        document.body.style.overflow = '';
+      }
+
+      // Attach open listeners to all enquiry and "Start a piece" buttons
+      $$('a[href="#end"], a[href^="mailto:"], .open-modal-btn').forEach(btn => {
+        btn.addEventListener('click', openEnquiryModal);
+      });
+
+      if (modalClose) modalClose.addEventListener('click', closeEnquiryModal);
+      if (modalDone) modalDone.addEventListener('click', closeEnquiryModal);
+
+      // Close modal on click outside (backdrop click)
+      if (modal) {
+        modal.addEventListener('click', event => {
+          const rect = modal.getBoundingClientRect();
+          const isInDialog = (
+            event.clientX >= rect.left &&
+            event.clientX <= rect.right &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom
+          );
+          if (!isInDialog) {
+            closeEnquiryModal();
+          }
+        });
+
+        modal.addEventListener('cancel', () => {
+          document.body.style.overflow = '';
+        });
+      }
+
+      // Handle form submission
+      if (enquiryForm) {
+        enquiryForm.addEventListener('submit', event => {
+          event.preventDefault();
+          if (formView && successView) {
+            formView.style.display = 'none';
+            successView.style.display = 'block';
+          }
+          enquiryForm.reset();
+        });
+      }
     </script>
   </body>
 </html>
